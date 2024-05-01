@@ -53,6 +53,9 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            if (Auth::user()->role == 'superadmin') {
+                return redirect()->route('SuperAdminHome');
+            }
             return to_route('userHome');
         } else {
             return redirect()->back()->withInput($request->only('email'))->withErrors([
