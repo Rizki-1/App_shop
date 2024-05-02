@@ -19,6 +19,9 @@ class SuperAdminMiddleware
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        return $next($request);
+        if (Auth::user()->role == "superadmin") {
+            return $next($request);
+        }
+        return redirect()->back();
     }
 }

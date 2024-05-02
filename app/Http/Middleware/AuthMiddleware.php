@@ -19,6 +19,9 @@ class AuthMiddleware
         if (!Auth::check()) {
             return redirect()->route('login');
         }
+        if (Auth::user()->role == "superadmin") {
+           return redirect()->back();
+        }
         return $next($request);
     }
 }

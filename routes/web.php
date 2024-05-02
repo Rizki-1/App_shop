@@ -13,10 +13,10 @@ Route::get('daftar', [LoginController::class, 'daftar'])->name('daftar');
 //login
 Route::post('DaftarStore', [LoginController::class, 'store'])->name('DaftarStore');
 Route::post('LoginStore', [LoginController::class, 'Loging'])->name('LoginStore');
+Route::post('Logout', [LoginController::class, 'Logout'])->name('logout');
 
 //user login
 Route::prefix('/User')->middleware(['AuthMiddleware'])->group(function () {
-Route::post('Logout', [LoginController::class, 'Logout'])->name('logout');
 Route::get('Home', [UserController::class, 'index'])->name('userHome');
 });
 

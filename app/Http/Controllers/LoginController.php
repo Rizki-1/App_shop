@@ -66,13 +66,15 @@ class LoginController extends Controller
 
     public function Logout(Request $request)
     {
+
         $guard = Auth::guard();
         $guard->logout();
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // return redirect('/');
+        return response(200);
     }
 
     /**
